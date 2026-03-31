@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)blob:https://www.kimi.com/ea1c1816-86cf-4d3c-a5cc-fa483682ecab -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Coffee Sales Analysis - Process Map</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            position: relative;
+        }
+
+        .node {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .node:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Start/End Nodes - Circles */
+        .node.start .content,
+        .node.end .content {
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            color: white;
+            border-radius: 50px;
+            padding: 20px 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2em;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.4);
+            border: 3px solid #2b6cb0;
+        }
+
+        .node.end .content {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+            border-color: #c53030;
+            box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4);
+        }
+
+        /* Process Nodes - Rectangles */
+        .node.process .content {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 25px 30px;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+            border-left: 5px solid #2f855a;
+        }
+
+        .node.process.yellow .content {
+            background: linear-gradient(135deg, #ecc94b 0%, #d69e2e 100%);
+            border-left-color: #b7791f;
+            box-shadow: 0 4px 15px rgba(236, 201, 75, 0.3);
+        }
+
+        /* Decision/Insight Nodes - Diamonds */
+        .node.decision {
+            display: flex;
+            justify-content: center;
+        }
+
+        .node.decision .diamond-wrapper {
+            position: relative;
+            width: 320px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .node.decision .diamond {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+            transform: rotate(45deg);
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(159, 122, 234, 0.4);
+            border: 3px solid #6b46c1;
+        }
+
+        .node.decision .diamond-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            max-width: 280px;
+        }
+
+        .node.decision h3 {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .node.decision .question {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .node.decision .answer {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            display: inline-block;
+            margin: 4px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Arrow Connectors */
+        .arrow {
+            width: 3px;
+            height: 30px;
+            background: linear-gradient(to bottom, #cbd5e0, #a0aec0);
+            margin: -15px 0;
+            position: relative;
+            z-index: 0;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 10px solid #a0aec0;
+        }
+
+        /* Special styling for data list */
+        .data-list {
+            list-style: none;
+            margin-top: 12px;
+            padding-left: 0;
+        }
+
+        .data-list li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 0.95em;
+            opacity: 0.95;
+        }
+
+        .data-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .node-title {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.3em;
+        }
+
+        /* Insights List */
+        .insights-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .insights-list li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .insights-list li:last-child {
+            border-bottom: none;
+        }
+
+        .insights-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            background: rgba(255, 255, 255, 0.3);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* Action items at end */
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .action-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Legend */
+        .legend {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px dashed #e2e8f0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+            color: #4a5568;
+        }
+
+        .legend-shape {
+            width: 30px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .legend-shape.circle {
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            background: #4299e1;
+        }
+
+        .legend-shape.rect {
+            background: #48bb78;
+        }
+
+        .legend-shape.diamond {
+            transform: rotate(45deg);
+            width: 20px;
+            height: 20px;
+            background: #9f7aea;
+            border-radius: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .node.decision .diamond-wrapper {
+                width: 280px;
+                height: 180px;
+            }
+            
+            .node.decision .diamond {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .node.decision .diamond-content {
+                max-width: 240px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .node {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .node:nth-child(1) { animation-delay: 0.1s; }
+        .node:nth-child(3) { animation-delay: 0.2s; }
+        .node:nth-child(5) { animation-delay: 0.3s; }
+        .node:nth-child(7) { animation-delay: 0.4s; }
+        .node:nth-child(9) { animation-delay: 0.5s; }
+        .node:nth-child(11) { animation-delay: 0.6s; }
+        .node:nth-child(13) { animation-delay: 0.7s; }
+        .node:nth-child(15) { animation-delay: 0.8s; }
+        .node:nth-child(17) { animation-delay: 0.9s; }
+        .node:nth-child(19) { animation-delay: 1.0s; }
+    </style>
+<!--<base target="_blank">--><base href="." target="_blank">
+</head>
+<body>
+    <div class="container">
+        <h1>☕ Bright Coffee Sales Analysis</h1>
+        <p class="subtitle">Process Workflow &amp; Decision Mapping</p>
+
+        <div class="flowchart">
+            <!-- START -->
+            <div class="node start" style="opacity: 1; z-index: 1;">
+                <div class="content">
+                    <span class="icon">🚀</span> START
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Collect Data -->
+            <div class="node process" style="opacity: 1; z-index: 1;">
+                <div class="content">
+                    <div class="node-title"><span class="icon">📊</span> Collect Sales Data</div>
+                    <ul class="data-list">
+                        <li>Transactions (date, time, location)</li>
+                        <li>Products sold</li>
+                        <li>Revenue per transaction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Clean Data -->
+            <div class="node process" style="opacity: 1; z-index: 1;">
+                <div class="content">
+                    <div class="node-title"><span class="icon">🧹</span> Prepare &amp; Clean Data</div>
+                    <ul class="data-list">
+                        <li>Remove errors / duplicates</li>
+                        <li>Standardize columns (date, product, location)</li>
+                        <li>Create fields (day of week, spending amount)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Analyze by Day -->
+            <div class="node process yellow" style="opacity: 1;">
+                <div class="content">
+                    <div class="node-title"><span class="icon">📅</span> Analyze Sales by Day</div>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Decision 1 -->
+            <div class="node decision" style="opacity: 1; z-index: 1;">
+                <div class="diamond-wrapper">
+                    <div class="diamond"></div>
+                    <div class="diamond-content">
+                        <h3>Decision / Insight</h3>
+                        <div class="question">Which days have highest sales?</div>
+                        <span class="answer">✔️ Weekdays = Highest</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Analyze Products -->
+            <div class="node process yellow" style="opacity: 1;">
+                <div class="content">
+                    <div class="node-title"><span class="icon">☕</span> Analyze Product Performance</div>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Decision 2 -->
+            <div class="node decision" style="opacity: 1; z-index: 1;">
+                <div class="diamond-wrapper">
+                    <div class="diamond"></div>
+                    <div class="diamond-content">
+                        <h3>Decision / Insight</h3>
+                        <div class="question">Which products sell the most?</div>
+                        <span class="answer">✔️ Coffee = #1</span>
+                        <span class="answer">✔️ Tea = #2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Analyze Location -->
+            <div class="node process yellow" style="opacity: 1; z-index: 1;">
+                <div class="content">
+                    <div class="node-title"><span class="icon">📍</span> Analyze Location Performance</div>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Decision 3 -->
+            <div class="node decision" style="opacity: 1;">
+                <div class="diamond-wrapper">
+                    <div class="diamond"></div>
+                    <div class="diamond-content">
+                        <h3>Decision / Insight</h3>
+                        <div class="question">Which location performs best?</div>
+                        <span class="answer">✔️ Hell's Kitchen = Top</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Customer Spending -->
+            <div class="node process yellow" style="opacity: 1; z-index: 1;">
+                <div class="content">
+                    <div class="node-title"><span class="icon">💰</span> Customer Spending Analysis</div>
+                    <ul class="data-list">
+                        <li>Group customers into buckets:</li>
+                        <li>• Low spenders</li>
+                        <li>• Medium spenders</li>
+                        <li>• High spenders</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Decision 4 -->
+            <div class="node decision" style="opacity: 1; z-index: 1;">
+                <div class="diamond-wrapper">
+                    <div class="diamond"></div>
+                    <div class="diamond-content">
+                        <h3>Decision / Insight</h3>
+                        <div class="question">Identify high-value customers</div>
+                        <span class="answer">✔️ Target high spenders</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- Generate Insights -->
+            <div class="node process" style="opacity: 1; z-index: 1;">
+                <div class="content">
+                    <div class="node-title"><span class="icon">💡</span> Generate Insights</div>
+                    <ul class="insights-list">
+                        <li>Focus on weekdays demand</li>
+                        <li>Prioritize coffee &amp; tea stock</li>
+                        <li>Learn from Hell's Kitchen performance</li>
+                        <li>Target high spenders</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow"></div>
+
+            <!-- END -->
+            <div class="node end" style="opacity: 1; z-index: 1;">
+                <div class="content">
+                    <span class="icon">🎯</span> Business Decisions &amp; Actions
+                    <div class="actions-grid">
+                        <div class="action-item">Improve operations</div>
+                        <div class="action-item">Increase sales strategies</div>
+                        <div class="action-item">Enhance customer experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-shape circle"></div>
+                <span>Start / End</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape rect"></div>
+                <span>Process Step</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape diamond"></div>
+                <span>Decision / Insight</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive hover effects
+        document.querySelectorAll('.node').forEach(node => {
+            node.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            node.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Smooth scroll reveal on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.node').forEach((node, index) => {
+                setTimeout(() => {
+                    node.style.opacity = '1';
+                }, index * 100);
+            });
+        });
+    </script>
+
+</body></html>

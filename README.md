@@ -1,66 +1,78 @@
-1. Project Overview
-This project focuses on analysing sales and operational performance for a coffee shop using a combination of Lean thinking and data analytics.
+# ☕ Bright Coffee Sales Analysis
 
-The objective was to transform raw transactional data into meaningful insights that support better decision-making, improve efficiency, and drive business growth.
+## 📌 Project Overview
+This project applies **Lean thinking and data analytics** to analyse coffee shop sales and operational performance.
 
-##2. Project Approach (End-to-End)
+The goal was to transform raw transactional data into **actionable insights** that improve decision-making, efficiency, and business growth.
 
-This project was executed using a structured, real-world consulting approach:
+---
 
-🔹 Process Mapping (Miro)
-The project started with mapping the full data and business process using Miro.
+## ⚙️ Project Approach
 
-This included:
+### 🔹 Process Mapping (Miro)
+- Mapped end-to-end business and data flow  
+- Defined key business questions  
+- Identified data sources and structure  
+- Designed ETL process  
 
-Defining key business questions Identifying data sources and structure Designing the data flow (ETL process) Linking business problems to data analysis
+### 🔹 Project Planning & Storytelling (Canva)
+- Defined problem statement and objectives  
+- Structured business story  
+- Focused on clear communication of insights  
 
-🔹 Project Planning & Storytelling (Canva)
-The project structure and business story were developed using Canva.
+### 🔹 Data Processing & Analysis (Databricks - SQL)
+- Data cleaning and transformation  
+- Revenue calculation (`Quantity × Price`)  
+- Time-based analysis (day, month, time of day)  
+- Aggregations and performance metrics  
+- Advanced SQL (CTEs, window functions, ranking)  
 
-This included:
+### 🔹 Dashboard & Insights
+- Revenue trends  
+- Sales performance by time  
+- Product and store performance  
+- Growth and decline patterns  
 
-Problem statement Objectives and goals Key business questions Expected outcomes
+### 🔹 Final Presentation (PowerPoint)
+- Business problem and objectives  
+- Key insights and trends  
+- Recommendations for improvement  
 
-👉 Focus was placed on telling a clear business story, not just showing data.
+---
 
-🔹 Data Processing & Analysis (Databricks)
-All data processing and analysis were performed using SQL in Databricks.
+## ❓ Key Business Questions
+- Which time of day generates the most revenue?  
+- Which days and months perform best or worst?  
+- Which products drive the most sales?  
+- Which stores are underperforming?  
+- What are the key revenue trends?  
 
-Key activities:
+---
 
-Data extraction and cleaning Data transformation using SQL functions Revenue calculations (Quantity × Price) Time-based analysis (day, month, time of day) Aggregations and performance metrics Advanced queries using CTEs, ranking, and window functions
+## 📊 Key Outcomes
+- Identified peak sales periods  
+- Highlighted top-performing products and stores  
+- Improved visibility of revenue drivers  
+- Identified underperforming areas  
+- Enabled data-driven decision-making  
 
-👉 This step converted raw data into structured, meaningful insights.
+---
 
-🔹 Dashboard & Insights
-The processed data was prepared for visualization and dashboard development.
+## 🛠️ Tools & Technologies
+- **Miro** – Process Mapping  
+- **Canva** – Project Planning & Storytelling  
+- **Databricks (SQL)** – Data Processing & Analysis  
+- **PowerPoint** – Presentation  
 
-Focus areas:
+---
 
-Revenue trends Sales performance by time Product and store performance Growth and decline patterns
+## 📚 Key Learnings
+- Start with clear business questions  
+- Structure data before analysis  
+- Combine Lean thinking with analytics  
+- Communicate insights clearly  
 
-👉 This enables real-time, data-driven decision-making.
+---
 
-🔹 Final Presentation (PowerPoint)
-The final insights were presented using PowerPoint in a clear and professional format.
-
-Presentation included:
-
-Business problem and objectives Data analysis findings Key insights and trends Recommendations for improvement
-
-👉 The goal was to communicate insights in a way that supports executive decision-making.
-
-3. Key Business Questions
-Which time of day generates the most revenue? Which day and month perform best or worst? Which products drive the most sales? Which stores are underperforming? What are the key revenue trends?
-
-4. Key Outcomes & Insights
-Identified peak sales periods and slow-performing times Improved visibility of revenue drivers Highlighted top-performing products and stores Enabled data-driven decision-making Created a foundation for continuous improvement
-
-5. Tools & Technologies Used
-Miro (Process Mapping) Canva (Project Planning & Storytelling) Databricks (SQL Data Processing & Analysis) PowerPoint (Final Presentation)
-
-6. Key Learnings
-Importance of starting with business questions Structuring data before analysis Connecting Lean thinking with data analytics Communicating insights clearly to stakeholders
-
-7. Conclusion
-This project demonstrates how combining process thinking (Lean) with data analytics can transform raw data into actionable insights that improve business performance.
+## 🚀 Conclusion
+This project demonstrates how combining **Lean process thinking** with **data analytics** can turn raw data into meaningful insights that drive business performance and strategic decisions.
